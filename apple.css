@@ -1737,6 +1737,53 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .apl-news-bullets li::before { content: "•"; position: absolute; left: 0; color: var(--apl-ink-4); }
 .apl-news-src { font-family: var(--sf-mono); font-size: 11px; color: var(--apl-ink-3); text-align: right; }
 .apl-news-arrow { display: inline-block; transition: transform 0.15s; margin-left: 2px; }
+
+/* ── Mobile overrides ──────────────────────────────────────────── */
+.apl-nav-burger { display: none; background: none; border: 0; font-size: 20px; color: var(--apl-ink); cursor: pointer; padding: 4px 8px; }
+.apl-nav-mobile { display: none; }
+.apl-sticky-submit { display: none; }
+@media (max-width: 640px) {
+  .apl-nav { position: sticky; top: 0; z-index: 100; background: var(--apl-bg); }
+  .apl-nav-links, .apl-nav-cta { display: none; }
+  .apl-nav-burger { display: inline-block; }
+  .apl-nav-mobile { display: flex; flex-direction: column; padding: 8px 20px 18px; border-top: 1px solid var(--apl-line); background: var(--apl-surface); }
+  .apl-nav-mobile-link { display: block; padding: 14px 4px; font-size: 15px; color: var(--apl-ink-2); border-bottom: 1px solid var(--apl-line); cursor: pointer; min-height: 48px; }
+  .apl-nav-mobile-link.active { color: var(--apl-teal); font-weight: 500; }
+  .apl-nav-mobile-link:last-child { border-bottom: 0; }
+  .apl-dirmap, .apl-leaflet, .apl-map, .apl-project-map, .apl-map-shell { height: 240px !important; }
+  .apl-zone-cards, .apl-zone-grid { grid-template-columns: 1fr !important; gap: 12px; }
+  details.apl-details, details.apl-assumptions { padding: 0; }
+  details.apl-details > summary, details.apl-assumptions > summary { list-style: none; }
+  details.apl-details[open], details.apl-assumptions[open] { }
+}
+@media (max-width: 480px) {
+  .apl-h1 { font-size: clamp(28px, 8vw, 42px); }
+  .apl-h2 { font-size: 22px; }
+  .apl-hero { padding: 60px 16px 48px; }
+  .apl-section, section { padding: 40px 16px !important; }
+  .apl-zone-card, .apl-zone-detail, .apl-submit-card, .apl-loan, .apl-rental, .apl-nbp, .apl-nb-card, .apl-info-card, .apl-project-card, .apl-card { padding: 16px !important; }
+  .apl-kpi-val, .apl-stat-num { font-size: 34px; }
+  .apl-feat-name, .apl-card-title { font-size: 17px; }
+  .apl-zone-detail-name { font-size: 22px; }
+  .apl-glance-heading { font-size: 18px; }
+  .apl-body, p { font-size: 15px; }
+  .apl-lead { font-size: 15px; }
+  .apl-modal-scrim { padding: 0; align-items: stretch; }
+  .apl-modal, .apl-choose-kind { border-radius: 0; min-height: 100vh; max-height: 100vh; width: 100%; max-width: none; }
+  .apl-modal-body { padding: 20px 16px; }
+  .apl-modal-grid, .apl-modal-dirs, .apl-pn-grid, .apl-cta-split, .apl-choose-grid, .apl-newproj-fields, .apl-detail-twoup, .apl-two-up { grid-template-columns: 1fr !important; }
+  .apl-loan-cmp3, .apl-loan-cmp2 { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .apl-loan-uni td, .apl-loan-uni thead th { padding: 12px 10px; font-size: 13px; }
+  .apl-loan-uni .apl-loan-work { font-size: 11px; }
+  .apl-kpi-row, .apl-stat-row { grid-template-columns: 1fr; gap: 12px; }
+  .apl-btn, button.apl-btn, .apl-cta { min-height: 44px; padding: 12px 18px; font-size: 15px; }
+  input, select, textarea, .apl-input, .apl-select { min-height: 44px; font-size: 16px; }
+  .apl-chip, .apl-drill-dir button, .apl-drill-type button, .apl-drill-proj { min-height: 44px; font-size: 15px; }
+  .apl-continue, .apl-btn-primary.apl-continue, .apl-modal .apl-btn-primary { position: sticky; bottom: 0; width: 100%; z-index: 5; min-height: 52px; border-radius: 0; }
+  .apl-sticky-submit { display: block; position: fixed; bottom: 0; left: 0; right: 0; background: var(--apl-teal); color: #fff; text-align: center; padding: 16px; font-size: 15px; font-weight: 500; z-index: 90; box-shadow: 0 -4px 20px rgba(0,0,0,0.15); min-height: 52px; }
+  .apl-sub-record { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px 12px; }
+  .apl-nav-logo { font-size: 20px; }
+}
 @media (max-width: 640px) {
   .apl-ref-table, .apl-ref-table thead, .apl-ref-table tbody, .apl-ref-table tr, .apl-ref-table td { display: block; }
   .apl-ref-table thead { display: none; }

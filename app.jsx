@@ -1137,7 +1137,7 @@ function LoanRealityCheck({ proj }) {
       )}
       <div className="apl-loan-takeaways">
         <p className="apl-loan-takeaway"><b>Homeowner?</b> You borrow <b>{k(base.underBy)} more</b> than the property is worth. Extra interest: <b>~{k(base.extraInterest)}</b> over {years} years.<span className="apl-loan-work">{k(base.loan)} loan − {k(net)} real price = {k(base.underBy)}; interest on that over {years} yrs</span><span className="apl-loan-underwater-note">{base.underBy > 0
-          ? "If your loan is more than the property's real price, you're 'underwater' — you'd need to bring extra cash to sell, and you're paying years of interest on value that isn't really there."
+          ? "Underwater means you owe more than you can sell for. You'd need extra cash to close, and you can't refinance until the gap closes."
           : "Your loan doesn't exceed the property's real price, so you're not paying interest on borrowed value that isn't there — you're not underwater."}</span></p>
         {rentAmt != null && (
           <p className="apl-loan-takeaway"><b>Investor?</b> You earn <b>{netYield.toFixed(1)}%</b>, you pay <b>{rate.toFixed(1)}%</b> — {spread < 0
@@ -1766,7 +1766,7 @@ function CompareTable({ items, onPick }) {
           })}
         </tbody>
       </table>
-      <div className="apl-cmptable-note">“Best” marks the most favourable value in each row for a typical buyer — lower price, PSF and travel time; higher yield, furnishing value and discount. Furnishing value and distances are illustrative.</div>
+      <div className="apl-cmptable-note">Green = better for buyers. Furnishing value and distances are estimates.</div>
     </div>
   );
 }
@@ -1780,10 +1780,10 @@ function AboutView() {
         <h1 className="apl-h2" style={{ marginBottom: 24 }}>The price on the contract isn't the price people pay.</h1>
         <div className="apl-prose">
           <p className="apl-lead" style={{ marginLeft: 0, fontSize: 21, marginBottom: 36 }}>
-            PropX surfaces the <strong style={{ color: "var(--apl-ink)" }}>net price</strong> of Johor Bahru property — what buyers actually paid after discounts and freebies — not just the headline SPA figure.
+            PropX surfaces the <strong style={{ color: "var(--apl-ink)" }}>net price</strong> of Johor Bahru property — what buyers actually paid after developer discounts — not just the headline SPA figure.
           </p>
           <h3 className="apl-about-h">SPA price vs net price</h3>
-          <p>The <strong style={{ color: "var(--apl-ink)" }}>SPA price</strong> is the official value on the contract — what shows up on Brickz and EdgeProp. The <strong style={{ color: "var(--apl-ink)" }}>net price</strong> is what was really paid, after the developer's discounts and freebies (cash rebates, absorbed legal fees, furniture packages). For a JB serviced apartment in 2024, the gap is commonly 10–20%.</p>
+          <p>The <strong style={{ color: "var(--apl-ink)" }}>SPA price</strong> is the official value on the contract — what shows up on Brickz and EdgeProp. The <strong style={{ color: "var(--apl-ink)" }}>net price</strong> is what was really paid, after the developer's discounts — cash back, absorbed legal fees, furniture packages. For a typical JB serviced apartment, the gap is commonly 10–20%.</p>
           <h3 className="apl-about-h">Where does the data come from?</h3>
           <p>A hand-curated research dataset from buyer reports, agent submissions, and publicly observed launches. For reference only — use it to inform negotiation, not as a substitute for due diligence.</p>
 
@@ -2197,7 +2197,7 @@ function SubmitView({ setPage, role }) {
               <div style={{ marginTop: 18 }}>
                 <div className="apl-field-label">Incentives in the package</div>
                 <div className="apl-incentive-grid">
-                  {[["rebate","Cash rebate"],["spaLegal","Free SPA legal"],["loanLegal","Free loan legal"],["furniture","Furniture pkg"],["maintenance","Free maintenance"]].map(([k,l]) => (
+                  {[["rebate","Cash back"],["spaLegal","Free SPA legal"],["loanLegal","Free loan legal"],["furniture","Furniture pkg"],["maintenance","Free maintenance"]].map(([k,l]) => (
                     <button key={k} className={"apl-inc-chip " + (incentives[k] ? "on" : "")} onClick={() => setIncentives(s => ({ ...s, [k]: !s[k] }))}>
                       {incentives[k] ? "✓ " : "+ "}{l}
                     </button>
@@ -2244,7 +2244,7 @@ function SubmitView({ setPage, role }) {
             <div className="apl-tiers">
               {[
                 { t: 0, name: "No proof", ex: "Just the numbers above." },
-                { t: 2, name: "Soft proof", ex: kind === "rent" ? "Listing screenshot, agent chat, or advertisement." : "Brochure, rebate sheet or booking summary (masked)." },
+                { t: 2, name: "Soft proof", ex: kind === "rent" ? "Listing screenshot, agent chat, or advertisement." : "Brochure, discount sheet or booking summary (masked)." },
                 { t: 3, name: "Strong proof", ex: kind === "rent" ? "Stamped tenancy agreement (masked)." : "Masked SPA side-letter, tenancy or valuation snippet." },
               ].map(o => (
                 <button key={o.t} className={"apl-tier " + (tier === o.t ? "active" : "")} onClick={() => setTier(o.t)}>

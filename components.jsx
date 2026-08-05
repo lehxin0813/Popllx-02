@@ -30,6 +30,7 @@ function useAplSaved() {
 // Nav
 function AppleNav({ page, setPage }) {
   const [saved] = useAplSaved();
+  const [open, setOpen] = React.useState(false);
   const links = [
     { id: "home", label: "Home" },
     { id: "budget", label: "Budget" },
@@ -38,21 +39,34 @@ function AppleNav({ page, setPage }) {
     { id: "list", label: "My List" },
     { id: "about", label: "About" },
   ];
+  const go = (id) => { setPage(id); setOpen(false); };
   return (
     <nav className="apl-nav">
       <div className="apl-nav-inner">
-        <a className="apl-nav-logo" onClick={() => setPage("home")} style={{ cursor: "pointer" }}>Prop<span className="dot">·</span>X</a>
+        <a className="apl-nav-logo" onClick={() => go("home")} style={{ cursor: "pointer" }}>Prop<span className="dot">·</span>X</a>
         <div className="apl-nav-links">
           {links.map(l => (
             <a key={l.id}
                className={"apl-nav-link " + (page === l.id ? "active" : "")}
-               onClick={() => setPage(l.id)}
+               onClick={() => go(l.id)}
                style={{ cursor: "pointer" }}>
               {l.label}{l.id === "list" && saved.length > 0 ? ` (${saved.length})` : ""}
             </a>
           ))}
         </div>
+        <button className="apl-nav-burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(o => !o)}>{open ? "✕" : "☰"}</button>
       </div>
+      {open && (
+        <div className="apl-nav-mobile">
+          {links.map(l => (
+            <a key={l.id}
+               className={"apl-nav-mobile-link " + (page === l.id ? "active" : "")}
+               onClick={() => go(l.id)}>
+              {l.label}{l.id === "list" && saved.length > 0 ? ` (${saved.length})` : ""}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
